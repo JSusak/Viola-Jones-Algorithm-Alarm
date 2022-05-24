@@ -9,11 +9,18 @@ Making this fun program was an introductory gateway into **object detection fram
 # Prerequisites
 - A webcam (self-explanatory :D)
 - Installation of the OpenCV library
-- A recent version of Python
+- A recent version of Python (I used `3.7.0`)
 
 # How to build
 
+This program was implemented using *Visual Studio Code*, any instructions here are under the assumption that you also used this IDE.
+- Install the [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) in your environment, allowing you to run code just by right clicking a desired .py file.
+- Fork the project OR clone it by running `git clone https://github.com/JSusak/Viola-Jones-Algorithm-Alarm.git`
+
 # Contributions
+The implementation still has lots of room for improvement to become more refined. I am currently attempting to:
+- Make asynchronous code, in order to display JSON statistics at certain intervals WITHOUT affecting code performance.
+- Find some more Haar Cascade files for other features (maybe ears, nose, perhaps even full body eventually) OR create my own (which may be excruciatingly arduous!)
 
 # What is the Viola-Jones Algorithm?
 
