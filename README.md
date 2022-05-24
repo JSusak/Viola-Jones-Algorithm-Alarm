@@ -24,9 +24,10 @@ The implementation still has lots of room for improvement to become more refined
 
 # What is the Viola-Jones Algorithm?
 In VERY simple terms, the Viola-Jones algorithm is a method of object detection mainly concerned with distinguishing facial features. It was proposed in 2001 and can work on both images and real-time video. It is best performed on greyscale images.
+(WIP)
 
 # OpenCV 
 [OpenCV](https://opencv.org/about/) is a very popular library aimed extensively for features relating to computer vision and machine learning. I would recommend you to check it out and see the powerful features it is capable of! (If you have the time of course :))
 
 I hope you enjoy looking at this project - Feel free to contribute to anything you would like.
-- Josh
+~ Josh
