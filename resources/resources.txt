@@ -1,0 +1,1 @@
+Any resources integral to the running of the application are stored here.

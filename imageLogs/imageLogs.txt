@@ -1,0 +1,2 @@
+Any saved faces caught during the detection period are saved here. They aren't sent anywhere else, feel free to delete them if you
+don't want to see :)

@@ -1,0 +1,1 @@
+Any JSONS used to log frequency of face detection would go in here.
