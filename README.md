@@ -1,7 +1,9 @@
-#Project Description
+# Project Description
 
-#Prerequisites
+# Prerequisites
 
-#Contributions
+# Contributions
 
-#What is the Viola-Jones Algorithm?
+# What is the Viola-Jones Algorithm?
+
+# OpenCV 
