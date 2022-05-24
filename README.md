@@ -23,5 +23,6 @@ The implementation still has lots of room for improvement to become more refined
 - Find some more Haar Cascade files for other features (maybe ears, nose, perhaps even full body eventually) OR create my own (which may be excruciatingly arduous!)
 
 # What is the Viola-Jones Algorithm?
+In VERY simple terms, the Viola-Jones algorithm is a method of object detection mainly concerned with distinguishing facial features. It was proposed in 2001 and can work on both images and real-time video.
 
 # OpenCV 
