@@ -5,7 +5,13 @@ import setup
 import jsonLogger
 import soundThreader
 import imageGrabber
+from datetime import datetime
 
+#Change this value to modify the interval at which frames are inspected.
+INTERVAL = 30;
+#Change this variable to modify the universal colour of all shapes in the program. You can also choose to leave it as None, providing random colours.
+#Put in the form (g,b,r) otherwise program will crash!
+COLOUR = (0,23,250)
 
 def main():
     eyeTrain = setup.initHaarFiles("haarcascade_eye")
@@ -16,15 +22,9 @@ def main():
     webcam = cv2.VideoCapture(0)
     oldTime = time.time()
 
-
-    # def setLiveTimer(frame):
-    # threading.Timer(1,cv2.putText(frame, str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")), (0,25),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,2)).start()
-
-    # setLiveTimer(webcam)
-
     while True:
         ret, frame = webcam.read()
-        count = 0
+        cv2.putText(frame, datetime.now().strftime("%d/%m/%Y %H:%M:%S"), (0,25),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,1, COLOUR if COLOUR is not None else (255,255,255),1,2)
         gs = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         faceDetection = faceTrain.detectMultiScale(
@@ -41,11 +41,11 @@ def main():
                 (x, y - 50),
                 cv2.FONT_ITALIC,
                 2,
-                (255, 255, 255),
+                COLOUR if COLOUR is not None else (255, 255, 255),
                 3,
                 cv2.LINE_AA,
             )
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), COLOUR if COLOUR is not None else (255, 255, 255), 2)
             faceDetected = frame[y : y + h, x : x + w]
             faceDetectedGrey = gs[y : y + h, x : x + w]
             eyes = eyeTrain.detectMultiScale(faceDetected)
@@ -59,11 +59,11 @@ def main():
                     (x + x2, y + y2 - 50),
                     cv2.FONT_ITALIC,
                     1,
-                    (255, 255, 0),
+                    COLOUR if COLOUR is not None else (255, 255, 0),
                     3,
                     cv2.LINE_AA,
                 )
-                frame = cv2.circle(frame, eye_center, radius, (255, 255, 0), 4)
+                frame = cv2.circle(frame, eye_center, radius, COLOUR if COLOUR is not None else (255, 255, 0), 4)
 
             for (x3, y3, w3, h3) in mouth:
                 cv2.putText(
@@ -72,16 +72,16 @@ def main():
                     (x + x3, y + y3 - 50),
                     cv2.FONT_ITALIC,
                     1,
-                    (0, 255, 0),
+                    COLOUR if COLOUR is not None else (0, 255, 0),
                     3,
                     cv2.LINE_AA,
                 )
                 frame = cv2.rectangle(
-                    frame, (x + x3, y + y3), (x + x3 + w3, y + y3 + h3), (0, 255, 0), 1
+                    frame, (x + x3, y + y3), (x + x3 + w3, y + y3 + h3), COLOUR if COLOUR is not None else (0, 255, 0), 1
                 )
 
         cv2.imshow("Viola-Jones Algorithm Alarm (Josh) [PRESS E TO EXIT]", frame)
-        if time.time() - oldTime > 10:
+        if time.time() - oldTime > INTERVAL:
             soundThreader.playSound("capture", "wav")
             print("Snapshot of current frame stored for processing.")
             if len(faceDetection) == 0:
