@@ -1,5 +1,6 @@
 #Every X seconds, send a signal to the main file to get the currently displayed contents in a frame.
 #Currently broken, need to work on fixing it!
+#This file is now redundant but still good if you want to SYNCHRONOUSLY call a function.
 import asyncio
 import time
 import sched
