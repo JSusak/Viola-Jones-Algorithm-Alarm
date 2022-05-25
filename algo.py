@@ -1,3 +1,4 @@
+#All neccessary imports.
 import cv2
 from scipy.misc import face
 import time
@@ -15,11 +16,14 @@ COLOUR = (0, 23, 250)
 
 
 def main():
+    #Retrieve the haar cascade files, preparing them for the program to use.
     eyeTrain = setup.initHaarFiles("haarcascade_eye")
     faceTrain = setup.initHaarFiles("haarcascade_frontalface_alt2")
     mouthTrain = setup.initHaarFiles("haarcascade_smile")
 
     cv2.namedWindow("Viola-Jones Algorithm Alarm (Josh)")
+    
+    #Get a reference to the main webcam as well as the current time of execution.
     webcam = cv2.VideoCapture(0)
     oldTime = time.time()
 
