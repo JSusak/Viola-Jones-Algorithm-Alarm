@@ -1,9 +1,1 @@
-{
-  "lastDetectedLog": [
-    {
-      "DetectionPositions": "[[504 406  68  68]\n [279 158 126 126]]",
-      "LastDetectedTime": "25/05/2022 08:54:09",
-      "timesDetected": 27662
-    }
-  ]
-}
+{"lastDetectedLog": [{"DetectionPositions": "[[337 190 151 151]]", "LastDetectedTime": "25/05/2022 09:45:52", "timesDetected": 27663}]}
