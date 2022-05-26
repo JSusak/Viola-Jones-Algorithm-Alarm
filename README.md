@@ -33,6 +33,7 @@ In VERY simple terms, the Viola-Jones algorithm is a method of object detection 
 It works based on **Haar Features** which essentially gets the pixel intensity of each region. To speed up detection, images can be converted to an **integral image** - it can be generated through the equation shown below - For each pixel in the original image, the value in the integral imagine is the value from the original image + all values above and to the left of the value.
 
 <img src="./resources/int_eq1.svg">
+[wip]
 
 # OpenCV
 
