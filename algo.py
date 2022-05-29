@@ -2,20 +2,28 @@
 import cv2
 from scipy.misc import face
 import time
+import requests
 import setup
+import imutils
 import jsonLogger
 import soundThreader
 import imageGrabber
 from datetime import datetime
+import numpy as np
+import CONSTANTS
 
-# Change this value to modify the interval at which frames are inspected.
-INTERVAL = 30
-# Change this variable to modify the universal colour of all shapes in the program. You can also choose to leave it as None, providing random colours.
-# Put in the form (g,b,r) otherwise program will crash!
-COLOUR = (0, 23, 250)
+INTERVAL = CONSTANTS.INTERVAL
+
+COLOUR = CONSTANTS.COLOUR
+
+URL = CONSTANTS.APPURL
 
 
-def main():
+def start(phoneMode):
+    if(phoneMode):
+        if(URL==None):
+            print("You are liar men. You didn't put a url to the 'IP Webcam' environment.")
+            return
     #Retrieve the haar cascade files, preparing them for the program to use.
     eyeTrain = setup.initHaarFiles("haarcascade_eye")
     faceTrain = setup.initHaarFiles("haarcascade_frontalface_alt2")
@@ -24,11 +32,25 @@ def main():
     cv2.namedWindow("Viola-Jones Algorithm Alarm (Josh)")
     
     #Get a reference to the main webcam as well as the current time of execution.
-    webcam = cv2.VideoCapture(0)
+    if(not phoneMode):
+        webcam = cv2.VideoCapture(0)
+
     oldTime = time.time()
 
     while True:
-        ret, frame = webcam.read()
+        if(phoneMode):
+
+            #The problem I see with linking your android device is that the IP webcam site is INSECURE.
+            #The only way for the code to run properly is to add another parameter to not check the certificates of the site.
+            #I shall comment this out so if you want to use an android device you will have to uncomment this line.
+            #If you get attacked (highly unlikely) I have warned you !! 
+
+            frame = requests.get(URL),# verify=False)
+            img_arr = np.array(bytearray(frame.content), dtype=np.uint8)
+            frame = cv2.imdecode(img_arr, -1)
+            frame = imutils.resize(frame, width=1000, height=1800)
+        else:
+            ret, frame = webcam.read()
         cv2.putText(
             frame,
             datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
@@ -135,9 +157,8 @@ def main():
             )
             break
 
-    webcam.release()
+    if(not phoneMode):
+        webcam.release()
+        
     cv2.destroyAllWindows()
 
-
-if __name__ == "__main__":
-    main()
