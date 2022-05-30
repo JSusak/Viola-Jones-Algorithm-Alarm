@@ -31,6 +31,8 @@ FURTHERMORE, I have noticed that the specific site that you have to use is consi
 - On the site, under "Video Renderer" click "Javascript".
 - When you run the code AND have uncommented the right line in algo.py (verify=False) the footage from your phone should appear if you type 'phone' on the main menu!
 
+I haven't found an implementation for iOS devices (sorry Apple users :( )
+
 # Contributions
 
 The implementation still has lots of room for improvement to become more refined. I am currently attempting to:
