@@ -21,7 +21,6 @@ def replaceLogs(detect):
 
 def readLogs():
     msg = ""
-    msg += "----------CURRENT JSON STATS----------" + "\n"
     with open("jsonLogs/detectionlogs.json", "r") as logFile:
         data = json.load(logFile)
         for item in data["lastDetectedLog"]:
@@ -31,14 +30,24 @@ def readLogs():
                 + ".\n"
             )
             msg += (
-                "• The last point of time at which a face was detected was at: "
+                "• The last date at which a face was detected was at: "
                 + str(item["LastDetectedTime"])
                 + ".\n"
             )
             msg += (
                 "• A face has been detected "
                 + str(item["timesDetected"])
-                + "times. Not very sneaky :)\n"
+                + " times. Not very sneaky :)\n"
             )
 
     return msg
+
+def getLastDetectedID():
+    id = "";
+    with open("jsonLogs/detectionlogs.json", "r") as logFile:
+            data = json.load(logFile)
+            for item in data["lastDetectedLog"]:
+                id += (str(item["timesDetected"]))
+                
+        
+    return int(id)

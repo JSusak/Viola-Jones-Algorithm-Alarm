@@ -10,6 +10,7 @@ import soundThreader
 import imageGrabber
 from datetime import datetime
 import numpy as np
+import sqliteManager
 import CONSTANTS
 
 INTERVAL = CONSTANTS.INTERVAL
@@ -143,13 +144,24 @@ def start(phoneMode):
                 oldTime = time.time()
             else:
                 oldTime = time.time()
-                print(jsonLogger.readLogs())
+
+
                 imageGrabber.takePicture(frame)
                 soundThreader.playSound("siren", "mp3")
                 jsonLogger.replaceLogs(faceDetection)
+                sqliteManager.insertIntoFaces(jsonLogger.getLastDetectedID(),datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+                sqliteManager.insertIntoFacesLink(jsonLogger.getLastDetectedID(),imageGrabber.getLatestPictureFile())
+
                 print(
-                    "Face has been found. Saved into image logs and logging position and last seen date into JSON."
+                    "Face has been found. Saved into image logs and logging position + last seen date into JSON/db file."
                 )
+
+                print("---------------MOST RECENT LOGS---------------")
+                print("----------CURRENT JSON STATS----------")
+                print(jsonLogger.readLogs())
+                print("----------CURRENT SQLITE DB STATS----------")
+                sqliteManager.getLastRowFaces()
+                sqliteManager.getLastRowFacesLink()
 
         if cv2.waitKey(1) & 0xFF is ord("e"):
             print(
