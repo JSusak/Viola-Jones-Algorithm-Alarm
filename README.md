@@ -3,7 +3,7 @@
 This project was made in a few hours, stemming from an idea which came to me as I woke up :)  
 The **Viola Jones Algorithm Alarm** makes use of the OpenCV library (discussed below) in order to capture real time footage of a computer webcam, providing alerts whenever a face appears.
 
-Footage is consistently recorded and played back for the user, while also detecting the prescence of any defining facial features. A periodic timer occurs to process a single frame captured at that moment - If a rough outline of a face IS detected in the frame, an external JSON file is updated with the time of detection, the image is saved to an external folder to view later and a blaring alarm plays >:)
+Footage is consistently recorded and played back for the user, while also detecting the prescence of any defining facial features. A periodic timer occurs to process a single frame captured at that moment - If a rough outline of a face IS detected in the frame, an external JSON file is updated as well as tables in a database created with SQLite3 with the time of detection, the image is saved to an external folder to view later and a blaring alarm plays >:)
 
 Making this fun program was an introductory gateway into **object detection frameworks** and **computer vision** alongside the brushing up of my Python skills which I haven't done for a while (due to learning Java for my CS classes and JavaScript for my Discord bot).
 
@@ -19,6 +19,17 @@ This program was implemented using _Visual Studio Code_, any instructions here a
 
 - Install the [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) in your environment, allowing you to run code just by right clicking a desired .py file.
 - Fork the project OR clone it by running `git clone https://github.com/JSusak/Viola-Jones-Algorithm-Alarm.git`
+
+# Connecting your Android Device
+
+This program does have the ability to render the algorithm through an Android phone, working in the same manner as if a webcam was attached to your PC. However, if you already have a webcam I would personally not follow these instructions as I have found the algorithm to be quite inaccurate while taking video footage from your phone - this is probably due to your phone camera being able to move so quickly whereas a webcam is in one place all the time.
+FURTHERMORE, I have noticed that the specific site that you have to use is considered insecure - I have tested the site and it does work but a further check has to be uncommented in the code, which you will have to do yourself if you want to access the footage which will be used in the code. Nevertheless, here are the steps to take if you wish to do it:
+
+- Download the [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam&hl=en&gl=US) app from the play store.
+- Open it and modify the settings to your liking - I chose to turn the sound off on my version, I would recommend you do it too.
+- When the camera starts you should notice two links under the IPv4 header - Copy that link into a browser. It should have the structure: "https://abc.def.g.hij:klmn"
+- On the site, under "Video Renderer" click "Javascript".
+- When you run the code AND have uncommented the right line in algo.py (verify=False) the footage from your phone should appear if you type 'phone' on the main menu!
 
 # Contributions
 
