@@ -1,0 +1,3 @@
+The alternative local database schema used to save any records of faces can be found here.
+The program is designed to make use of the most recent entry but if you have software like 'Microsoft Access' or 'sqlitebrowser' you
+could theoretically view the previous records :)
