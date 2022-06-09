@@ -54,6 +54,7 @@ def start(phoneMode):
             frame = imutils.resize(frame, width=1000, height=1800)
         else:
             ret, frame = webcam.read()
+            frame = imutils.resize(frame, width=1000, height=1800)
         cv2.putText(
             frame,
             datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
@@ -159,8 +160,10 @@ def start(phoneMode):
 
                 print("---------------MOST RECENT LOGS---------------")
                 print("----------CURRENT JSON STATS----------")
+                #Logs read from the json file...
                 print(jsonLogger.readLogs())
                 print("----------CURRENT SQLITE DB STATS----------")
+                #Alongside the database!
                 sqliteManager.getLastRowFaces()
                 sqliteManager.getLastRowFacesLink()
 
