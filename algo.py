@@ -57,9 +57,19 @@ def start(phoneMode):
             frame = imutils.resize(frame, width=1000, height=1800)
         cv2.putText(
             frame,
-            datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+            'Current time: {}'.format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")),
             (0, 25),
-            cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,
+            cv2.FONT_ITALIC,
+            1,
+            COLOUR if COLOUR is not None else (255, 255, 255),
+            1,
+            2,
+        )
+        cv2.putText(
+            frame,
+            "SPACE = take a snapshot. E = exit :)",
+            (0, 745),
+            cv2.FONT_ITALIC,
             1,
             COLOUR if COLOUR is not None else (255, 255, 255),
             1,
