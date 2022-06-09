@@ -31,7 +31,7 @@ def start(phoneMode):
     faceTrain = setup.initHaarFiles("haarcascade_frontalface_alt2")
     mouthTrain = setup.initHaarFiles("haarcascade_smile")
 
-    cv2.namedWindow("Viola-Jones Algorithm Alarm (Josh)")
+    cv2.namedWindow("Viola-Jones Algorithm Set-up")
     
     #Get a reference to the main webcam as well as the current time of execution.
     if(not phoneMode):
@@ -145,7 +145,7 @@ def start(phoneMode):
                     1,
                 )
 
-        cv2.imshow("Viola-Jones Algorithm Alarm (Josh) [PRESS E TO EXIT]", frame)
+        cv2.imshow("Viola-Jones Algorithm Alarm [Josh]", frame)
         if ((time.time() - oldTime > INTERVAL) or (cv2.waitKey(1) & 0xFF is ord(" "))):
             soundThreader.playSound("capture", "wav")
             print("Snapshot of current frame stored for processing.")
