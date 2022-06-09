@@ -13,6 +13,7 @@ import numpy as np
 import sqliteManager
 import CONSTANTS
 
+#Get the constants found in CONSTANTS.py
 INTERVAL = CONSTANTS.INTERVAL
 
 COLOUR = CONSTANTS.COLOUR
@@ -38,6 +39,7 @@ def start(phoneMode):
 
     oldTime = time.time()
 
+    #Infinite loop used to gather camera information on a frame-by-frame basis.
     while True:
         if(phoneMode):
 
@@ -90,7 +92,6 @@ def start(phoneMode):
                 2,
             )
             faceDetected = frame[y : y + h, x : x + w]
-            faceDetectedGrey = gs[y : y + h, x : x + w]
             eyes = eyeTrain.detectMultiScale(faceDetected)
             mouth = mouthTrain.detectMultiScale(faceDetected)
             for (x2, y2, w2, h2) in eyes:
@@ -134,7 +135,7 @@ def start(phoneMode):
                 )
 
         cv2.imshow("Viola-Jones Algorithm Alarm (Josh) [PRESS E TO EXIT]", frame)
-        if time.time() - oldTime > INTERVAL:
+        if ((time.time() - oldTime > INTERVAL) or (cv2.waitKey(1) & 0xFF is ord(" "))):
             soundThreader.playSound("capture", "wav")
             print("Snapshot of current frame stored for processing.")
             if len(faceDetection) == 0:
