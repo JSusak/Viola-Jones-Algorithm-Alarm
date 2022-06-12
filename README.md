@@ -39,6 +39,7 @@ The implementation still has lots of room for improvement to become more refined
 
 - Make asynchronous code, in order to display JSON statistics at certain intervals WITHOUT affecting code performance.
 - Find some more Haar Cascade files for other features (maybe ears, nose, perhaps even full body eventually) OR create my own (which may be excruciatingly arduous!)
+- Perhaps make a GUI with buttons to control the filter/take snapshot/quit?
 
 # What is the Viola-Jones Algorithm?
 
