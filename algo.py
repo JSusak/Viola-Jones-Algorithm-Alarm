@@ -158,6 +158,7 @@ def start(phoneMode):
             soundThreader.playSound("capture", "wav")
             print("Snapshot of current frame stored for processing.")
             timeElapsed =  timer() - initialTime
+            #If the length of the faceDetection tuple is 0, no positions are being logged, therefore meaning there is no face present.
             if len(faceDetection) == 0:
                 print(
                     "WARNING: No face found. Nothing has been saved to JSON or image logs."
@@ -167,6 +168,7 @@ def start(phoneMode):
                 oldTime = time.time()
 
 
+                #If a face HAS been found, take a picture, play the siren sound, insert into the database...
                 imageGrabber.takePicture(frame)
                 soundThreader.playSound("siren", "mp3")
                 jsonLogger.replaceLogs(faceDetection)
