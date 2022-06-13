@@ -9,6 +9,8 @@ import jsonLogger
 import soundThreader
 import imageGrabber
 from datetime import datetime
+from datetime import timedelta
+from timeit import default_timer as timer
 import numpy as np
 import sqliteManager
 import CONSTANTS
@@ -19,6 +21,7 @@ INTERVAL = CONSTANTS.INTERVAL
 COLOUR = CONSTANTS.COLOUR
 
 URL = CONSTANTS.APPURL
+
 
 
 def start(phoneMode):
@@ -35,9 +38,12 @@ def start(phoneMode):
     
     #Get a reference to the main webcam as well as the current time of execution.
     if(not phoneMode):
+        global webcam 
         webcam = cv2.VideoCapture(0)
 
     oldTime = time.time()
+    initialTime = timer();
+
 
     #Infinite loop used to gather camera information on a frame-by-frame basis.
     while True:
@@ -146,9 +152,12 @@ def start(phoneMode):
                 )
 
         cv2.imshow("Viola-Jones Algorithm Alarm [Josh]", frame)
+        #User can press the space bar OR wait for the chosen interval to pass.
+        #Keep in mind that pressing the spacebar also resets the interval.
         if ((time.time() - oldTime > INTERVAL) or (cv2.waitKey(1) & 0xFF is ord(" "))):
             soundThreader.playSound("capture", "wav")
             print("Snapshot of current frame stored for processing.")
+            timeElapsed =  timer() - initialTime
             if len(faceDetection) == 0:
                 print(
                     "WARNING: No face found. Nothing has been saved to JSON or image logs."
@@ -177,6 +186,8 @@ def start(phoneMode):
                 sqliteManager.getLastRowFaces()
                 sqliteManager.getLastRowFacesLink()
 
+            print("TOTAL TIME ELAPSED: {}").format(timedelta(seconds=timeElapsed))
+
         if cv2.waitKey(1) & 0xFF is ord("e"):
             print(
                 "Recording has been terminated. Thanks for experimenting with the algorithm!"
@@ -186,5 +197,9 @@ def start(phoneMode):
     if(not phoneMode):
         webcam.release()
         
+    cv2.destroyAllWindows()
+
+def quit():
+    webcam.release()       
     cv2.destroyAllWindows()
 
