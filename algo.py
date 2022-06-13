@@ -14,6 +14,7 @@ from timeit import default_timer as timer
 import numpy as np
 import sqliteManager
 import CONSTANTS
+import colourFilters
 
 #Get the constants found in CONSTANTS.py
 INTERVAL = CONSTANTS.INTERVAL
@@ -188,7 +189,7 @@ def start(phoneMode):
                 sqliteManager.getLastRowFaces()
                 sqliteManager.getLastRowFacesLink()
 
-            print("TOTAL TIME ELAPSED: {}").format(timedelta(seconds=timeElapsed))
+            print("TOTAL TIME ELAPSED: " + timedelta(seconds=timeElapsed))
 
         if cv2.waitKey(1) & 0xFF is ord("e"):
             print(
