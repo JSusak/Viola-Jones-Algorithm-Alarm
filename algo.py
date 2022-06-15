@@ -84,6 +84,10 @@ def start(phoneMode):
         )
         gs = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+        
+        while cv2.waitKey(1) & 0xFF is ord("x"):
+            print("heehee")
+
         faceDetection = faceTrain.detectMultiScale(
             gs,
             scaleFactor=1.1,
