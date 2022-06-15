@@ -2,7 +2,7 @@ import algo
 
 def main():
     while True:
-        algorithmMode = input("Would you like to start the algorithm on your computer webcam or your phone? 'webcam'/'phone'")
+        algorithmMode = input("Would you like to start the algorithm on your computer webcam or your phone? 'webcam'/'phone'").strip().lower()
         if(algorithmMode == "webcam"):
             while True:
                 webcam = input("Do you have a webcam plugged into your computer? 'y'/'n'")
