@@ -1,3 +1,4 @@
 import cv2
 def invertImage(frame):
-    cv2.bitwise_not(frame);
+    print("Image inverted...")
+    return cv2.bitwise_not(frame);

@@ -23,6 +23,8 @@ COLOUR = CONSTANTS.COLOUR
 
 URL = CONSTANTS.APPURL
 
+timeElapsed = 0
+
 
 
 def start(phoneMode):
@@ -84,9 +86,9 @@ def start(phoneMode):
         )
         gs = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        
-        while cv2.waitKey(1) & 0xFF is ord("x"):
-            print("heehee")
+        #Get current info.
+        if cv2.waitKey(1) & 0xFF is ord("x"):
+            getInfo()
 
         faceDetection = faceTrain.detectMultiScale(
             gs,
@@ -184,16 +186,8 @@ def start(phoneMode):
                     "Face has been found. Saved into image logs and logging position + last seen date into JSON/db file."
                 )
 
-                print("---------------MOST RECENT LOGS---------------")
-                print("----------CURRENT JSON STATS----------")
-                #Logs read from the json file...
-                print(jsonLogger.readLogs())
-                print("----------CURRENT SQLITE DB STATS----------")
-                #Alongside the database!
-                sqliteManager.getLastRowFaces()
-                sqliteManager.getLastRowFacesLink()
+                getInfo()
 
-            print("TOTAL TIME ELAPSED: " + timedelta(seconds=timeElapsed))
 
         if cv2.waitKey(1) & 0xFF is ord("e"):
             print(
@@ -209,4 +203,16 @@ def start(phoneMode):
 def quit():
     webcam.release()       
     cv2.destroyAllWindows()
+
+def getInfo():
+    print("---------------MOST RECENT LOGS---------------")
+    print("----------CURRENT JSON STATS----------")
+    #Logs read from the json file...
+    print(jsonLogger.readLogs())
+    print("----------CURRENT SQLITE DB STATS----------")
+    #Alongside the database!
+    sqliteManager.getLastRowFaces()
+    sqliteManager.getLastRowFacesLink()
+
+    print("TOTAL TIME ELAPSED: " + str(timedelta(seconds=timeElapsed)))
 
