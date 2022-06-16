@@ -1,7 +1,9 @@
 import algo
 
+#Main terminal screen, allows users to choose between choosing a webcam and phone alongside some further confirmations.
 def main():
     while True:
+        #Turns input into lowercase + removes whitespace to increase consistency.
         algorithmMode = input("Would you like to start the algorithm on your computer webcam or your phone? 'webcam'/'phone'").strip().lower()
         if(algorithmMode == "webcam"):
             while True:
