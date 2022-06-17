@@ -90,6 +90,9 @@ def start(phoneMode):
         if cv2.waitKey(1) & 0xFF is ord("x"):
             getInfo()
 
+        #while cv2.waitKey(1) & 0xFF is ord("r"):
+            #colourFilters.invertImage(frame)
+
         faceDetection = faceTrain.detectMultiScale(
             gs,
             scaleFactor=1.1,
